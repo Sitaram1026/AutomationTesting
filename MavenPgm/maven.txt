@@ -1,0 +1,7 @@
+our project should store into the repository - Git Repo
+
+Jenkins - CI/CD
+
+jenkins - Git Repo
+
+Jenkins - Pom.xml- TestNg.xml -- Scripting - Main Functionaliy - Page Object Model
