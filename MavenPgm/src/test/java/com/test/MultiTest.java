@@ -1,6 +1,9 @@
 package com.test;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.List;
+import java.util.Properties;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -18,12 +21,18 @@ public class MultiTest {
 	
 	WebDriver driver;
 	
+	Properties prop = new Properties();
+	
 	@BeforeClass
-	public void Initalization()
+	public void Initalization() throws IOException
 	{
+		
+		FileInputStream  fis = new FileInputStream(System.getProperty("user.dir")+"\\Properties\\config.properties"); // we are finding the location where file are available
+		prop.load(fis);  //we are loading the data from prop file
+		
 		 driver = new ChromeDriver();
 
-		driver.get("https://www.amazon.in");
+		driver.get(prop.getProperty("QA_URL"));
 
 		driver.manage().window().maximize();
 	}
@@ -32,7 +41,7 @@ public class MultiTest {
 	public void SelectDropDown() {
 		
 
-		WebElement dropdown = driver.findElement(By.id("searchDropdownBox"));
+		WebElement dropdown = driver.findElement(By.id(prop.getProperty("SearchDropDownBox")));
 
 		Select sel = new Select(dropdown);
 
